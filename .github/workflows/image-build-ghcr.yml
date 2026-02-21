@@ -39,9 +39,12 @@ jobs:
         with:
           images: ghcr.io/${{ github.repository }}
           tags: |
+            # Tag de versión si existe (ej: v1.0.0)
             type=semver,pattern={{version}}
+            # Tag 'latest' siempre que estemos en la rama principal
             type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
-            type=ref,event=workflow_dispatch
+            # Tag con el SHA corto del commit (útil para debug)
+            type=sha
 
       - name: Build and push
         uses: docker/build-push-action@v5
