@@ -47,6 +47,6 @@ jobs:
           context: .
           platforms: linux/arm64,linux/arm/v7
           push: true
-          # Usa las etiquetas generadas automáticamente
-          tags: ${{ id.meta.outputs.tags }}
-          labels: ${{ id.meta.outputs.labels }}
+          # Corregido: usando 'steps' en lugar de 'id'
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
